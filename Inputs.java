@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class Inputs {
-    private Scanner stdIn = new Scanner(System.in);
+public class Input {
+    private static Scanner stdIn = new Scanner(System.in);
 
-    public String getString() {
+    public static String getString() {
         return stdIn.nextLine();
     }
 
-    public int getListChoice(String list, int listLength) {
+    public static int getListChoice(String list, int listLength) {
         String input = "no input yet";
         int output = 0;
         System.out.print(list);
@@ -24,7 +24,7 @@ public class Inputs {
         return output;
     }
 
-    public int stringToInt(String inputString) {
+    public static int stringToInt(String inputString) {
         if (inputString.chars().allMatch(Character::isDigit)) {
             return Integer.parseInt(inputString);
         } else {
@@ -32,7 +32,7 @@ public class Inputs {
         }
     }
 
-    public int getInt(String errorMessage) {
+    public static int getInt(String errorMessage) {
         System.out.println(errorMessage);
         while (!stdIn.hasNextInt()) {
             stdIn.next();
@@ -41,7 +41,7 @@ public class Inputs {
         return stdIn.nextInt();
     }
 
-    public int[] getDisplayChoices(String display, String movie, String searchOrder) {
+    public static int[] getDisplayChoices(String display, String movie, String searchOrder) {
         int[] returns = new int[4];
         returns[0] = getListChoice(display, 2);
         if (returns[0] == 2) {
@@ -55,7 +55,7 @@ public class Inputs {
         return returns;
     }
 
-    public int[] getDisplayChoices(String display, String movie, String searchOrder, String logout) {
+    public static int[] getDisplayChoices(String display, String movie, String searchOrder, String logout) {
         int[] returns = new int[4];
         returns[0] = getListChoice(display + logout, 3);
         if (returns[0] == 3) {
@@ -72,7 +72,7 @@ public class Inputs {
     }
 
 
-    public String[] splitNewItem() {
+    public static String[] splitNewItem() {
         System.out.println("Please enter the details of your item, seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
         return stdIn.nextLine().split(", ");
     }
