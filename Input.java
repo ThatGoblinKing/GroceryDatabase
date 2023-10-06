@@ -55,10 +55,10 @@ public class Input {
         return returns;
     }
 
-    public static int[] getDisplayChoices(String display, String movie, String searchOrder, String logout) {
+    public static int[] getDisplayChoices(String display, String movie, String searchOrder, String extraOptions) {
         int[] returns = new int[4];
-        returns[0] = getListChoice(display + logout, 3);
-        if (returns[0] == 3) {
+        returns[0] = getListChoice(display + extraOptions, 4);
+        if (returns[0] > 2) {
             return returns;
         } else if (returns[0] == 2) {
             System.out.println("What would you like to search by?");

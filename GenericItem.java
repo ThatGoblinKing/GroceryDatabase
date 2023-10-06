@@ -2,8 +2,7 @@ public class GenericItem {
     private String name;
     private int id, quantity;
     private double price;
-    public String searchTerm;
-    public int searchYear;
+    public String searchVariable, sortVariable;
 
     public GenericItem(String name, double price, int quantity, int id) {
         this.price = price;
@@ -15,16 +14,33 @@ public class GenericItem {
     public void prepareForSearch(int varSelect) {
         switch (varSelect) {
             case 1:
-                this.searchTerm = this.name.toUpperCase();
+                this.sortVariable = this.name.toUpperCase();
                 break;
             case 2:
-                this.searchTerm = String.valueOf(this.id).toUpperCase();
+                this.sortVariable = String.valueOf(this.id).toUpperCase();
                 break;
             case 3:
-                this.searchTerm = String.valueOf(this.price).toUpperCase();
+                this.sortVariable = String.valueOf(this.price).toUpperCase();
                 break;
             case 4:
-                this.searchTerm = String.valueOf(this.quantity).toUpperCase();
+                this.sortVariable = String.valueOf(this.quantity).toUpperCase();
+                break;
+        }
+    }
+
+    public void prepareForSort(int varSelect) {
+        switch (varSelect) {
+            case 1:
+                this.searchVariable = this.name.toUpperCase();
+                break;
+            case 2:
+                this.searchVariable = String.valueOf(this.id).toUpperCase();
+                break;
+            case 3:
+                this.searchVariable = String.valueOf(this.price).toUpperCase();
+                break;
+            case 4:
+                this.searchVariable = String.valueOf(this.quantity).toUpperCase();
                 break;
         }
     }
