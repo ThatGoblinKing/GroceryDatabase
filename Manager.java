@@ -1,4 +1,4 @@
-public class Manager extends Prompter {
+final public class Manager extends Prompter {
     private final static String MANAGER_OPTIONS = "1). Edit an existing item listing\n2). Add a new item\n3). Delete an item\n4). Display inventory\n5). Exit manager mode\n6). Exit the program\n";
     private static int managerChoice = 1, selectChoice, delChoice, editChoice;
     private static String editMovieInput;
@@ -22,7 +22,7 @@ public class Manager extends Prompter {
                 break;
 
             case 4:
-                int[] displayChoices = Input.getDisplayChoices(DISPLAY_OPTIONS, GENERIC_ITEM_OPTIONS,
+                int[] displayChoices = Input.getDisplayChoices(DISPLAY_OPTIONS, SORT_AND_SEARCH_OPTIONS,
                         SEARCH_ORDER_OPTIONS);
                 Prompter.displayItems(displayChoices);
                 break;
@@ -39,13 +39,16 @@ public class Manager extends Prompter {
 
     private static void editItem() {
         selectChoice = Input.getListChoice(
-                "Which item would you like to edit? (please enter the item's ID)",
+                "Which item would you like to edit? (please enter the item's ID): ",
                 inventory.size());
         System.out.println("What would you like to edit?");
-        editChoice = Input.getListChoice(GENERIC_ITEM_OPTIONS, 4);
+        if (inventory.get(selectChoice - 1) instanceof BrandedItem){
+            editChoice = Input.getListChoice(GENERIC_ITEM_OPTIONS + "4). Brand\n", 4);
+        } else {
+        editChoice = Input.getListChoice(GENERIC_ITEM_OPTIONS, 3);}
         System.out.println("What would you like to change that to?");
         editMovieInput = Input.getString();
-        inventory.get(selectChoice).edit(editMovieInput, editChoice);
+        inventory.get(selectChoice - 1).edit(editMovieInput, editChoice);
     }
 
     private static void addItem() {
@@ -77,7 +80,7 @@ public class Manager extends Prompter {
 
     private static void deleteItem() {
         delChoice = Input.getListChoice(
-                "Which item would you like to delete? (please enter the item's ID)",
+                "Which item would you like to delete? (please enter the item's ID): ",
                 inventory.size());
         inventory.set(delChoice - 1, null);
 

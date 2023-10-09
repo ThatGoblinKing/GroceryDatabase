@@ -1,46 +1,47 @@
 import java.util.ArrayList;
 
-public class Display {
-    private final int HIGH_TO_LOW = 1, LOW_TO_HIGH = 2, NAME = 1, QUANTITY = 2, PRICE = 3;
-    private static GenericItem[] InventoryOutput;
+final public class Display {
+    private static final int HIGH_TO_LOW = 1, LOW_TO_HIGH = 2;
 
     public static GenericItem[] sortAndSearch(ArrayList<GenericItem> inventory, String searchedTerm,
             int searchedVariable, boolean displayAll, int searchOrder, int sortedVariable) {
-        GenericItem[] inventoryOutput = prepare(inventory, searchedVariable);
-        sort(inventoryOutput, 0, inventoryOutput.length-1);
+        GenericItem[] inventoryOutput = prepare(inventory, searchedVariable, sortedVariable);
+        prepare(inventory, searchedVariable, sortedVariable);
+        sort(inventoryOutput, 0, inventoryOutput.length-1, searchOrder);
 
         if (!displayAll) {
-            for(GenericItem item : inventoryOutput)
+           inventoryOutput = search(inventoryOutput, searchedTerm);
         }
         return inventoryOutput;
     }
 
-    public static GenericItem[] search(ArrayList<GenericItem> inventory, String searchedTerm, int searchedVariable) {
-        ArrayList<GenericItem> searched = new ArrayList<GenericItem>();
-        GenericItem[] returned;
-        inventory = deNull(inventory);
-        for (int leftIndex = 0; leftIndex < inventory.size(); leftIndex++) {
-            GenericItem item = inventory.get(leftIndex);
-            if (item != null) {
-                item.prepareForSearch(searchedVariable);
-                if (item.searchedTerm != null && item.searchedTerm.contains(searchedTerm.toUpperCase())) {
-                    searched.add(item);
-                }
+    public static GenericItem[] search(GenericItem[] inventory, String searchedTerm) {
+        ArrayList<GenericItem> temporaryInventory = new ArrayList<GenericItem>();
+        GenericItem[] returned = new GenericItem[inventory.length];
+        for (GenericItem item : inventory){
+            if (item.searchVariable.contains(searchedTerm.toUpperCase())) {
+                temporaryInventory.add(item);
             }
+            }
+            GenericItem[] prepared = new GenericItem[temporaryInventory.size()];
+        for (int currentIndex = 0; currentIndex < temporaryInventory.size(); currentIndex++) {
+            prepared[currentIndex] = temporaryInventory.get(currentIndex);
         }
-        returned = new GenericItem[searched.size()];
-        for (int leftIndex = 0; leftIndex < searched.size(); leftIndex++) {
-            returned[leftIndex] = searched.get(leftIndex);
+        returned = new GenericItem[temporaryInventory.size()];
+        for (int currentIndex = 0; currentIndex < temporaryInventory.size(); currentIndex++) {
+            returned[currentIndex] = temporaryInventory.get(currentIndex);
         }
+
         return returned;
     }
 
-    private static GenericItem[] prepare(ArrayList<GenericItem> inventory, int searchedVariable) {
+       private static GenericItem[] prepare(ArrayList<GenericItem> inventory, int searchedVariable, int sortedVariable) {
         ArrayList<GenericItem> temporaryInventory = new ArrayList<GenericItem>();
         for (GenericItem item : inventory) {
             if (item != null) {
                 temporaryInventory.add(item);
                 item.prepareForSearch(searchedVariable);
+                item.prepareForSort(sortedVariable);
             }
         }
         GenericItem[] prepared = new GenericItem[temporaryInventory.size()];
@@ -50,7 +51,7 @@ public class Display {
         return prepared;
     }
 
-    private static void merge(GenericItem toSort[], int leftMost, int middle, int rightMost) {
+    private static void merge(GenericItem toSort[], int leftMost, int middle, int rightMost, int sortOrder) {
         // Find sizes of two subarrays to be merged
         int subarrayOneSize = middle - leftMost + 1;
         int rightSubArraySize = rightMost - middle;
@@ -73,12 +74,22 @@ public class Display {
         // Initial index of merged subarray array
         int mergedIndex = leftMost;
         while (leftIndex < subarrayOneSize && rightIndex < rightSubArraySize) {
-            if (L[leftIndex].sortVariable.compareTo(R[rightIndex].sortVariable) <= 0) {
-                toSort[mergedIndex] = L[leftIndex];
-                leftIndex++;
-            } else {
-                toSort[mergedIndex] = R[rightIndex];
-                rightIndex++;
+            if (sortOrder == HIGH_TO_LOW) {
+                if (L[leftIndex].sortVariable.compareTo(R[rightIndex].sortVariable) <= 0) {
+                    toSort[mergedIndex] = L[leftIndex];
+                    leftIndex++;
+                } else {
+                    toSort[mergedIndex] = R[rightIndex];
+                    rightIndex++;
+                }
+            } else if (sortOrder == LOW_TO_HIGH) {
+                if (L[leftIndex].sortVariable.compareTo(R[rightIndex].sortVariable) >= 0) {
+                    toSort[mergedIndex] = L[leftIndex];
+                    leftIndex++;
+                } else {
+                    toSort[mergedIndex] = R[rightIndex];
+                    rightIndex++;
+                }
             }
             mergedIndex++;
         }
@@ -100,18 +111,18 @@ public class Display {
 
     // Main function that sorts toSort[leftMost..rightMost] using
     // merge()
-    private static void sort(GenericItem toSort[], int leftMost, int rightMost) {
+    private static void sort(GenericItem toSort[], int leftMost, int rightMost, int sortOrder) {
         if (leftMost < rightMost) {
 
             // Find the middle point
             int middle = leftMost + (rightMost - leftMost) / 2;
 
             // Sort first and second halves
-            sort(toSort, leftMost, middle);
-            sort(toSort, middle + 1, rightMost);
+            sort(toSort, leftMost, middle, sortOrder);
+            sort(toSort, middle + 1, rightMost, sortOrder);
 
             // Merge the sorted halves
-            merge(toSort, leftMost, middle, rightMost);
+            merge(toSort, leftMost, middle, rightMost, sortOrder);
         }
     }
 }

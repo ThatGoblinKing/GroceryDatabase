@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Input {
+final public class Input {
     private static Scanner stdIn = new Scanner(System.in);
 
     public static String getString() {
@@ -46,10 +46,10 @@ public class Input {
         returns[0] = getListChoice(display, 2);
         if (returns[0] == 2) {
             System.out.println("What would you like to search by?");
-            returns[1] = getListChoice(movie, 4);
+            returns[1] = getListChoice(movie, 5);
         }
         System.out.println("What would you like to sort by?");
-        returns[2] = getListChoice(movie, 4);
+        returns[2] = getListChoice(movie, 5);
         System.out.println("What order should the sort be in?");
         returns[3] = getListChoice(searchOrder, 2);
         return returns;
@@ -62,10 +62,10 @@ public class Input {
             return returns;
         } else if (returns[0] == 2) {
             System.out.println("What would you like to search by?");
-            returns[1] = getListChoice(movie, 4);
+            returns[1] = getListChoice(movie, 5);
         }
         System.out.println("What would you like to sort by?");
-        returns[2] = getListChoice(movie, 4);
+        returns[2] = getListChoice(movie, 5);
         System.out.println("What order should the sort be in?");
         returns[3] = getListChoice(searchOrder, 2);
         return returns;

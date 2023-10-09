@@ -1,6 +1,6 @@
-public class User extends Prompter {
+final public class User extends Prompter {
     public static char prompts() {
-        int[] displayChoices = Input.getDisplayChoices(DISPLAY_OPTIONS, GENERIC_ITEM_OPTIONS,
+        int[] displayChoices = Input.getDisplayChoices(DISPLAY_OPTIONS, SORT_AND_SEARCH_OPTIONS,
                 SEARCH_ORDER_OPTIONS, "3). Enter Managerial Credentials\n4). Logout\n");
         if (displayChoices[0] == 3) {
             return GrocersDatabase.INPUTTING_PASSWORD;
