@@ -41,39 +41,60 @@ final public class Input {
         return stdIn.nextInt();
     }
 
-    public static int[] getDisplayChoices(String display, String movie, String searchOrder) {
+    public static int[] getDisplayChoices(String display, String itemPrompts, String searchOrder) {
         int[] returns = new int[4];
         returns[0] = getListChoice(display, 2);
         if (returns[0] == 2) {
             System.out.println("What would you like to search by?");
-            returns[1] = getListChoice(movie, 5);
+            returns[1] = getListChoice(itemPrompts, 5);
         }
         System.out.println("What would you like to sort by?");
-        returns[2] = getListChoice(movie, 5);
+        returns[2] = getListChoice(itemPrompts, 5);
         System.out.println("What order should the sort be in?");
         returns[3] = getListChoice(searchOrder, 2);
         return returns;
     }
 
-    public static int[] getDisplayChoices(String display, String movie, String searchOrder, String extraOptions) {
+    public static int[] getDisplayChoices(String display, String itemPrompts, String searchOrder, String extraOptions) {
         int[] returns = new int[4];
         returns[0] = getListChoice(display + extraOptions, 4);
         if (returns[0] > 2) {
             return returns;
         } else if (returns[0] == 2) {
             System.out.println("What would you like to search by?");
-            returns[1] = getListChoice(movie, 5);
+            returns[1] = getListChoice(itemPrompts, 5);
         }
         System.out.println("What would you like to sort by?");
-        returns[2] = getListChoice(movie, 5);
+        returns[2] = getListChoice(itemPrompts, 5);
         System.out.println("What order should the sort be in?");
         returns[3] = getListChoice(searchOrder, 2);
         return returns;
     }
 
+    private static boolean validItem(String newItem) {
+        boolean correctLength, numbersCanBeParsed;
+        try {
+            String[] testedStrings = newItem.split(", ");
+            correctLength = (testedStrings.length == 4 || testedStrings.length == 3);
+            String price = testedStrings[testedStrings.length - 2], 
+            quantity = testedStrings[testedStrings.length - 1];
+            Double.parseDouble(price);
+            Integer.parseInt(quantity);
+            numbersCanBeParsed = true;
+        } catch(Exception e) {
+            return false;
+        }
+        return (numbersCanBeParsed && correctLength);
+
+    }
 
     public static String[] splitNewItem() {
         System.out.println("Please enter the details of your item, seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
-        return stdIn.nextLine().split(", ");
+        String newItem = stdIn.nextLine();
+        while (!validItem(newItem)){
+            System.out.println("Sorry, that input wasn't readable.\nPlease enter the item's properties seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
+            newItem = stdIn.nextLine();
+        }
+        return newItem.split(", ");
     }
 }

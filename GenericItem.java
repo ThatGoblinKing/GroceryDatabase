@@ -17,13 +17,13 @@ public class GenericItem {
                 this.searchVariable = this.name.toUpperCase();
                 break;
             case 2:
-                this.searchVariable = String.valueOf(this.id).toUpperCase();
+                this.searchVariable = String.format("%08d", this.id).toUpperCase();
                 break;
             case 3:
-                this.searchVariable = String.valueOf(this.price).toUpperCase();
+                this.searchVariable = String.format("%08.2f", this.price);
                 break;
             case 4:
-                this.searchVariable = String.valueOf(this.quantity).toUpperCase();
+                this.searchVariable = String.format("%08d", this.quantity);
                 break;
             case 5:
                 this.searchVariable = ""; //Prevents Null Exception error, whilst allow removing it from any searches.
@@ -38,13 +38,12 @@ public class GenericItem {
                 break;
             case 2:
                 this.sortVariable = String.format("%08d", this.id).toUpperCase();
-                System.out.print(this.sortVariable);
                 break;
             case 3:
-                this.sortVariable = String.format("%08d.2f", this.id)
+                this.sortVariable = String.format("%08.2f", this.price);
                 break;
             case 4:
-                this.sortVariable = String.valueOf(this.quantity).toUpperCase();
+                this.sortVariable = String.format("%08d", this.quantity);
                 break;
             case 5:
                 this.sortVariable = "~"; //This ensures that an item without a brand be lexicographically less than those that do. 

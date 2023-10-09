@@ -52,26 +52,22 @@ final public class Display {
     }
 
     private static void merge(GenericItem toSort[], int leftMost, int middle, int rightMost, int sortOrder) {
-        // Find sizes of two subarrays to be merged
+
         int subarrayOneSize = middle - leftMost + 1;
         int rightSubArraySize = rightMost - middle;
 
-        // Create temp arrays
+
         GenericItem L[] = new GenericItem[subarrayOneSize];
         GenericItem R[] = new GenericItem[rightSubArraySize];
 
-        // Copy data to temp arrays
+
         for (int leftIndex = 0; leftIndex < subarrayOneSize; ++leftIndex)
             L[leftIndex] = toSort[leftMost + leftIndex];
         for (int rightIndex = 0; rightIndex < rightSubArraySize; ++rightIndex)
             R[rightIndex] = toSort[middle + 1 + rightIndex];
 
-        // Merge the temp arrays
-
-        // Initial indices of first and second subarrays
         int leftIndex = 0, rightIndex = 0;
 
-        // Initial index of merged subarray array
         int mergedIndex = leftMost;
         while (leftIndex < subarrayOneSize && rightIndex < rightSubArraySize) {
             if (sortOrder == HIGH_TO_LOW) {
@@ -94,34 +90,26 @@ final public class Display {
             mergedIndex++;
         }
 
-        // Copy remaining elements of L[] if any
         while (leftIndex < subarrayOneSize) {
             toSort[mergedIndex] = L[leftIndex];
             leftIndex++;
             mergedIndex++;
         }
 
-        // Copy remaining elements of R[] if any
         while (rightIndex < rightSubArraySize) {
             toSort[mergedIndex] = R[rightIndex];
             rightIndex++;
             mergedIndex++;
         }
     }
-
-    // Main function that sorts toSort[leftMost..rightMost] using
-    // merge()
     private static void sort(GenericItem toSort[], int leftMost, int rightMost, int sortOrder) {
         if (leftMost < rightMost) {
 
-            // Find the middle point
             int middle = leftMost + (rightMost - leftMost) / 2;
 
-            // Sort first and second halves
             sort(toSort, leftMost, middle, sortOrder);
             sort(toSort, middle + 1, rightMost, sortOrder);
 
-            // Merge the sorted halves
             merge(toSort, leftMost, middle, rightMost, sortOrder);
         }
     }
