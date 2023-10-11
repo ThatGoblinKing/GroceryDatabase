@@ -1,20 +1,21 @@
 public class GenericItem {
-    private String name;
-    private int id, quantity;
-    private double price;
+    protected String itemType;
+    protected int id, quantity;
+    protected double price;
     public String searchVariable, sortVariable;
+    protected final String DISPLAY_FORMAT = "ID: %08d\nItem: %s\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\nPrice: $%.2f\nQuantity: %d\n---------------------------------\n";
 
-    public GenericItem(String name, double price, int quantity, int id) {
+    public GenericItem(String itemType, double price, int quantity, int id) {
         this.price = price;
         this.quantity = quantity;
-        this.name = name;
+        this.itemType = itemType;
         this.id = id;
     }
 
     public void prepareForSearch(int varSelect) {
         switch (varSelect) {
             case 1:
-                this.searchVariable = this.name.toUpperCase();
+                this.searchVariable = this.itemType.toUpperCase();
                 break;
             case 2:
                 this.searchVariable = String.format("%08d", this.id).toUpperCase();
@@ -26,7 +27,7 @@ public class GenericItem {
                 this.searchVariable = String.format("%08d", this.quantity);
                 break;
             case 5:
-                this.searchVariable = ""; //Prevents Null Exception error, whilst allow removing it from any searches.
+                this.searchVariable = ""; // Prevents Null Exception error, while allow removing it from any searches.
                 break;
         }
     }
@@ -34,7 +35,7 @@ public class GenericItem {
     public void prepareForSort(int varSelect) {
         switch (varSelect) {
             case 1:
-                this.sortVariable = this.name.toUpperCase();
+                this.sortVariable = this.itemType.toUpperCase();
                 break;
             case 2:
                 this.sortVariable = String.format("%08d", this.id).toUpperCase();
@@ -46,14 +47,14 @@ public class GenericItem {
                 this.sortVariable = String.format("%08d", this.quantity);
                 break;
             case 5:
-                this.sortVariable = "~"; //This ensures that an item without a brand be lexicographically less than those that do. 
+                this.sortVariable = "~"; // This ensures that an item without a brand will always be lexicographically lower than those that do.
         }
     }
 
     public void edit(String edit, int varSelect) {
         switch (varSelect) {
             case 1:
-                this.name = edit;
+                this.itemType = edit;
                 break;
             case 2:
                 this.quantity = Integer.parseInt(edit);
@@ -69,8 +70,7 @@ public class GenericItem {
     }
 
     public void display() {
-        System.out.printf(
-                "Item: %s\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \nPrice: $%.2f\nQuantity In Stock: %d\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \nID: %08d\n---------------------------------------------\n",
-                this.name, this.price, this.quantity, this.id);
+        System.out.printf(DISPLAY_FORMAT,
+                this.id, this.itemType, this.price, this.quantity);
     }
 }
