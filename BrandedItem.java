@@ -1,8 +1,9 @@
 public class BrandedItem extends GenericItem {
+  private final String DISPLAY_FORMAT = "ID: %08d\nItem: %s (%s)\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\nPrice: $%.2f\nQuantity: %d\n---------------------------------\n";
   private String brand;
 
-  public BrandedItem(String brand, String name, double price, int quantity, int id) {
-    super(name, price, quantity, id);
+  public BrandedItem(String brand, String itemType, double price, int quantity, int id) {
+    super(itemType, price, quantity, id);
     this.brand = brand;
   }
 
@@ -28,7 +29,6 @@ public class BrandedItem extends GenericItem {
   }
 
   public void display() {
-    System.out.println("Brand: " + this.brand);
-    super.display();
-}
+    System.out.printf(DISPLAY_FORMAT, this.id, this.itemType, this.brand, this.price, this.quantity);
+  }
 }

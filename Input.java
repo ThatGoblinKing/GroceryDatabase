@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-final public class Input {
+public final class Input {
     private static Scanner stdIn = new Scanner(System.in);
 
     public static String getString() {
@@ -13,32 +13,16 @@ final public class Input {
         System.out.print(list);
         input = stdIn.nextLine();
         do {
-        while (!input.chars().allMatch(Character::isDigit) && input.length() > 0) {
-            System.out.printf("Invalid input. Enter an integer between 1 and %d, these are your options\n%s",
-                    listLength, list);
-            input = stdIn.nextLine();
-        }
+            while (input.length() == 0 || !input.chars().allMatch(Character::isDigit)) {
+                System.out.printf("Invalid input. Enter an integer between 1 and %d, these are your options\n%s",
+                        listLength, list);
+                input = stdIn.nextLine();
+            }
             output = Integer.parseInt(input);
-            if (output < 1 || output > listLength) input = "invalid";
+            if (output < 1 || output > listLength)
+                input = "invalid";
         } while (output < 1 || output > listLength);
         return output;
-    }
-
-    public static int stringToInt(String inputString) {
-        if (inputString.chars().allMatch(Character::isDigit)) {
-            return Integer.parseInt(inputString);
-        } else {
-            return getInt("Please enter a valid year.");
-        }
-    }
-
-    public static int getInt(String errorMessage) {
-        System.out.println(errorMessage);
-        while (!stdIn.hasNextInt()) {
-            stdIn.next();
-            System.out.println(errorMessage);
-        }
-        return stdIn.nextInt();
     }
 
     public static int[] getDisplayChoices(String display, String itemPrompts, String searchOrder) {
@@ -57,7 +41,7 @@ final public class Input {
 
     public static int[] getDisplayChoices(String display, String itemPrompts, String searchOrder, String extraOptions) {
         int[] returns = new int[4];
-        returns[0] = getListChoice(display + extraOptions, 4);
+        returns[0] = getListChoice(display + extraOptions, 3);
         if (returns[0] > 2) {
             return returns;
         } else if (returns[0] == 2) {
@@ -72,27 +56,29 @@ final public class Input {
     }
 
     private static boolean validItem(String newItem) {
-        boolean correctLength, numbersCanBeParsed;
+        boolean correctLength;
         try {
             String[] testedStrings = newItem.split(", ");
             correctLength = (testedStrings.length == 4 || testedStrings.length == 3);
-            String price = testedStrings[testedStrings.length - 2], 
-            quantity = testedStrings[testedStrings.length - 1];
+            String price = testedStrings[testedStrings.length - 2],
+                    quantity = testedStrings[testedStrings.length - 1];
             Double.parseDouble(price);
             Integer.parseInt(quantity);
-            numbersCanBeParsed = true;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
-        return (numbersCanBeParsed && correctLength);
+        return (correctLength);
 
     }
 
     public static String[] splitNewItem() {
-        System.out.println("Please enter the details of your item, seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
+        final String PROMPT = "Please enter the details of your item, seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity. I.E\n" + //
+                "\"Organic Valley, Eggs, 3.99, 35\"";
+        System.out.println(PROMPT);
         String newItem = stdIn.nextLine();
-        while (!validItem(newItem)){
-            System.out.println("Sorry, that input wasn't readable.\nPlease enter the item's properties seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
+        while (!validItem(newItem)) {
+            System.out.println(
+                    "Sorry, that input wasn't readable. " + PROMPT);
             newItem = stdIn.nextLine();
         }
         return newItem.split(", ");
