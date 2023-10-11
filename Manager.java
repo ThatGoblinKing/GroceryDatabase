@@ -1,10 +1,10 @@
 public final class Manager extends Prompter {
-    private static final String MANAGER_OPTIONS = "1). Edit an existing item listing\n2). Add a new item\n3). Delete an item\n4). Display inventory\n5). Logout\n";
+    private static final String MANAGER_OPTIONS = "1). Edit an existing item listing\n2). Add a new item\n3). Delete an item\n4). Display inventory\n5). Logout\n",
+            MANAGER_MODE = "User mode:\n\nWould you like to:";
     private static int managerChoice = 1, selectChoice, delChoice, editChoice;
-    private static String editMovieInput;
+    private static String editItemInput;
     private static String[] itemElements;
     private static boolean itemSet;
-    private static final String MANAGER_MODE = "User mode:\n\nWould you like to:";
 
     public static char prompts() {
         System.out.println(MANAGER_MODE);
@@ -48,8 +48,8 @@ public final class Manager extends Prompter {
             editChoice = Input.getListChoice(GENERIC_ITEM_OPTIONS, 3);
         }
         System.out.println("What would you like to change that to?");
-        editMovieInput = Input.getString();
-        inventory.get(selectChoice - 1).edit(editMovieInput, editChoice);
+        editItemInput = Input.getString();
+        inventory.get(selectChoice - 1).edit(editItemInput, editChoice);
     }
 
     private static void addItem() {

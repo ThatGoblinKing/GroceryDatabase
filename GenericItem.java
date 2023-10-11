@@ -3,7 +3,7 @@ public class GenericItem {
     protected int id, quantity;
     protected double price;
     public String searchVariable, sortVariable;
-    protected final String DISPLAY_FORMAT = "ID: %08d\nItem: %s\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\nPrice: $%.2f\nQuantity: %d\n---------------------------------\n";
+    private final String DISPLAY_FORMAT = "ID: %08d\nItem: %s\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\nPrice: $%.2f\nQuantity: %d\n---------------------------------\n";
 
     public GenericItem(String itemType, double price, int quantity, int id) {
         this.price = price;
@@ -57,10 +57,20 @@ public class GenericItem {
                 this.itemType = edit;
                 break;
             case 2:
+                try {
                 this.quantity = Integer.parseInt(edit);
+                } catch(Exception e) {
+                    System.out.println("Sorry, that wasn't readable. Make sure to enter an integer.");
+                    edit(Input.getString(), 2);
+                }
                 break;
             case 3:
+                try {
                 this.price = Double.parseDouble(edit);
+                } catch(Exception e) {
+                    System.out.println("Sorry, that wasn't readable. Make sure to enter a double without a $.");
+                    edit(Input.getString(), 3);
+                }
                 break;
         }
     }

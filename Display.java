@@ -15,7 +15,7 @@ final public class Display {
         return inventoryOutput;
     }
 
-    public static GenericItem[] search(GenericItem[] inventory, String searchedTerm) {
+    private static GenericItem[] search(GenericItem[] inventory, String searchedTerm) {
         ArrayList<GenericItem> temporaryInventory = new ArrayList<GenericItem>();
         for (GenericItem item : inventory) {
             if (item.searchVariable.contains(searchedTerm.toUpperCase())

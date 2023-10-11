@@ -25,15 +25,6 @@ public final class Input {
         return output;
     }
 
-    public static int getInt(String errorMessage) {
-        System.out.println(errorMessage);
-        while (!stdIn.hasNextInt()) {
-            stdIn.next();
-            System.out.println(errorMessage);
-        }
-        return stdIn.nextInt();
-    }
-
     public static int[] getDisplayChoices(String display, String itemPrompts, String searchOrder) {
         int[] returns = new int[4];
         returns[0] = getListChoice(display, 2);
@@ -81,12 +72,13 @@ public final class Input {
     }
 
     public static String[] splitNewItem() {
-        System.out.println(
-                "Please enter the details of your item, seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
+        final String PROMPT = "Please enter the details of your item, seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity. I.E\n" + //
+                "\"Organic Valley, Eggs, 3.99, 35\"";
+        System.out.println(PROMPT);
         String newItem = stdIn.nextLine();
         while (!validItem(newItem)) {
             System.out.println(
-                    "Sorry, that input wasn't readable.\nPlease enter the item's properties seperated by a comma and a space (, ) in the following order:\nBrand (Optional), Name, Price Without $, Quantity");
+                    "Sorry, that input wasn't readable. " + PROMPT);
             newItem = stdIn.nextLine();
         }
         return newItem.split(", ");
