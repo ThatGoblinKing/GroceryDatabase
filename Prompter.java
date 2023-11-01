@@ -10,7 +10,7 @@ public class Prompter {
 
     protected static GenericItem[] searchedAndSortedItems;
     protected static String searchTerm;
-    protected static ArrayList<GenericItem> inventory = new ArrayList<GenericItem>();
+    protected static ArrayList<GenericItem> inventory = FileManager.addDefaultItems();
 
     private static String passwordInput = "not inputted", passwordPrompt;
 
@@ -30,27 +30,11 @@ public class Prompter {
         searchedAndSortedItems = Display.sortAndSearch(inventory, searchTerm, searchChoice, (displayChoice == 1), sortOrder,
                 sortChoice);
         for (GenericItem item : searchedAndSortedItems) {
-            item.display();
+            System.out.print(item);
         }
     }
 
-    public static void addDefaultItems() {
-        inventory.add(new GenericItem("Bread", 3.99, 10, 1));
-        inventory.add(new BrandedItem("Kraft", "Cheese", 2.99, 43, 2));
-        inventory.add(new BrandedItem("Oreo", "Cookies", 5.99, 43, 3));
-        inventory.add(new GenericItem("Milk", 2.49, 20, 4));
-        inventory.add(new BrandedItem("Coca-Cola", "Soda", 1.99, 30, 5));
-        inventory.add(new GenericItem("Eggs", 1.99, 15, 6));
-        inventory.add(new BrandedItem("Kellogg's", "Cereal", 4.49, 25, 7));
-        inventory.add(new GenericItem("Apples", 0.99, 50, 8));
-        inventory.add(new BrandedItem("Colgate", "Toothpaste", 2.79, 15, 9));
-        inventory.add(new GenericItem("Pasta", 1.49, 40, 10));
-        inventory.add(new BrandedItem("Tide", "Laundry Detergent", 8.99, 10, 11));
-        inventory.add(new GenericItem("Bananas", 0.49, 60, 12));
-        inventory.add(new BrandedItem("Campbell's", "Soup", 1.29, 35, 13));
-        inventory.add(new GenericItem("Potatoes", 1.99, 30, 14));
-        inventory.add(new BrandedItem("Velveeta", "Mac & Cheese", 1.99, 25, 15));
-    }
+
 
     public static char getPassword() {
         final String PASSWORD = "password123";

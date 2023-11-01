@@ -28,7 +28,11 @@ public class BrandedItem extends GenericItem {
     }
   }
 
-  public void display() {
-    System.out.printf(DISPLAY_FORMAT, this.id, this.itemType, this.brand, this.price, this.quantity);
+  public String toString() {
+    return String.format(DISPLAY_FORMAT, this.id, this.itemType, this.brand, this.price, this.quantity);
   }
+
+  public String save() {
+    return String.format("%s, %s, %.02f, %d", this.brand, this.itemType, this.price, this.quantity);
+}
 }

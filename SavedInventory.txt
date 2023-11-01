@@ -1,0 +1,50 @@
+Fruit Gummies, 2.99, 52
+Heinz, Ketchup, 2.49, 38
+Ice Cream, 4.99, 20
+Yogurt, 1.99, 60
+Baking Mix, 2.29, 45
+Cranberry Juice, 2.49, 40
+Salad Dressing, 3.29, 30
+Campbell's, Chicken Soup, 1.99, 40
+Mustard, 1.79, 48
+Syrup, 3.49, 28
+Chocolate, 3.79, 22
+Kellogg's, Cereal, 4.49, 28
+Goldfish, 1.99, 50
+Kellogg's, Pop-Tarts, 2.69, 36
+Lay's, Potato Chips, 2.49, 45
+Pasta Sauce, 1.79, 48
+Coca-Cola, Soda, 1.29, 65
+Kraft, Cheese, 2.79, 30
+Diet Soda, 1.29, 52
+Barilla, Pasta, 1.89, 60
+Hershey's, Chocolate Bar, 1.49, 50
+Tropicana, Orange Juice, 2.99, 42
+Hunt's, Canned Tomatoes, 1.69, 32
+Bread, 2.49, 40
+Keebler, Cookies, 2.99, 42
+Fruit Gummies, 2.99, 45
+Cereal, 4.49, 28
+Quaker Oats, Oatmeal, 2.39, 55
+Lipton, Tea Bags, 3.79, 55
+Chicken, 5.99, 18
+McCormick, Spices, 3.49, 25
+Goya, Rice, 3.29, 45
+Bread, 2.49, 40
+Apple, 0.99, 80
+Hormel, Bacon, 4.49, 25
+Chicken Soup, 1.99, 40
+Starkist, Canned Tuna, 1.49, 48
+Red Bull, Energy Drink, 2.99, 30
+Fruit Gummies, 2.99, 45
+Ocean Spray, Cranberry Juice, 2.49, 40
+Pasta Sauce, 1.79, 48
+Diet Soda, 1.29, 52
+Fruit Gummies, 2.99, 52
+Kraft, Mac & Cheese, 1.29, 60
+Mars, Candy Bars, 1.49, 55
+Heinz, Mustard, 1.79, 48
+Tropicana, Orange Juice, 2.99, 42
+Mccain, Frozen Fries, 2.99, 28
+Nestle, Chocolate Chips, 2.89, 35
+Kraft, Peanut Butter, 3.19, 30

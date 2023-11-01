@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>1248</x><y>408</y><w>200</w><h>128</h></coordinates><panel_attributes>GrocersDatabase
+<diagram program="umletino" version="15.1"><zoom_level>3</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>468</x><y>435</y><w>75</w><h>48</h></coordinates><panel_attributes>GrocersDatabase
 --
 - PROGRAM_CLOSE : String {readOnly}
 - userState : char
@@ -9,7 +9,7 @@ __+ USER_MODE : char {readOnly}__
 __+ QUIT : char {readOnly}__
 --
 __+ main(args : String[]) : void__
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1104</x><y>232</y><w>488</w><h>104</h></coordinates><panel_attributes>Input
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>369</y><w>183</w><h>39</h></coordinates><panel_attributes>Input {readOnly}
 --
 __stdIn : Scanner__
 --
@@ -17,11 +17,11 @@ __+ getListChoice(list : String, listLength: int) : int__
 __+ getDisplayChoices(display : String, itemPrompts : String, searchOrder : String) : int[]__
 __+ getDisplayChoices(display : String, itemPrompts : String, searchOrder : String), extraOptions : String : int[]__
 __- validItem(newItem : String) : boolean__
-__+ splitNewItem() : String[]__</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>752</y><w>104</w><h>56</h></coordinates><panel_attributes>User
+__+ splitNewItem() : String[]__</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>564</y><w>39</w><h>21</h></coordinates><panel_attributes>User
 --
 __- USER_MODE : String__
 --
-__+ prompts() : char__</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>856</x><y>408</y><w>248</w><h>280</h></coordinates><panel_attributes>Prompter
+__+ prompts() : char__</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>321</x><y>435</y><w>93</w><h>105</h></coordinates><panel_attributes>Prompter
 --
 __# DISPLAY_OPTIONS : String {readOnly}__
 __# GENERIC_ITEM_OPTIONS: String {readOnly}__
@@ -44,7 +44,7 @@ __# sortOrder  : int__
 __# displayItems(displayChoices : int[]) : void__
 __+ addDefaultItems() : void__
 __+ getPassword() : char__
-__+ startingMenu() : char__</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1568</x><y>408</y><w>352</w><h>184</h></coordinates><panel_attributes>GenericItem
+__+ startingMenu() : char__</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>588</x><y>435</y><w>132</w><h>69</h></coordinates><panel_attributes>GenericItem
 --
 # itemType : String
 # id : int
@@ -59,7 +59,7 @@ __+ startingMenu() : char__</panel_attributes><additional_attributes></additiona
 + prepareForSort(varSelect : int) : void
 + edit(edit : String, varSelect : int) : void 
 + changeId(changeTo : int) : void
-+ display() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1536</x><y>712</y><w>424</w><h>104</h></coordinates><panel_attributes>BrandedItem
++ display() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>576</x><y>549</y><w>159</w><h>39</h></coordinates><panel_attributes>BrandedItem
 --
 - DISPLAY_FORMAT : String {readOnly}
 --
@@ -67,7 +67,7 @@ __+ startingMenu() : char__</panel_attributes><additional_attributes></additiona
 + prepareForSearch(varSelect : int) : void
 + prepareForSort(varSelect : int) : void
 + edit(edit : String, varSelect : int) : void
-+ display() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1000</x><y>760</y><w>200</w><h>168</h></coordinates><panel_attributes>Manager
++ display() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>375</x><y>567</y><w>75</w><h>63</h></coordinates><panel_attributes>Manager
 --
 __- MANAGER_OPTIONS : String_ {readOnly}__
 __- MANAGER_MODE : String_ {readOnly}__
@@ -82,7 +82,7 @@ __- itemSet : boolean__
 __+ prompts() : char__
 _- editItem() : void_
 _- addItem() : void_
-_- deeleteItem() : void_</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>408</y><w>792</w><h>112</h></coordinates><panel_attributes>Display
+_- deeleteItem() : void_</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>435</y><w>297</w><h>42</h></coordinates><panel_attributes>Display
 --
 __ - HIGH_TO_LOW : int__ {readOnly}
 _- LOW_TO_HIGH : int_ {readOnly}
@@ -92,4 +92,10 @@ _- search(inventory : GenericItem[], searchedTerm : String) : genericItem[]_
 _- prepare(ArrayList&lt;GenericItem&gt;, searchedVariable : int, searchedVariable : int) : GenericItem[]_
 _- merge(toSort : GenericItem[], leftMost : int, middle : int, rightMost : int, sortOrder : int) : void_
 _- sort(toSort : GenericItem[], leftMost : int, rightMost : int, sortOrder : int) : void_
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>680</y><w>152</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>163;10;160;70;10;70;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>680</y><w>160</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>13;10;10;70;180;70;180;100</additional_attributes></element><element><id>Relation</id><coordinates><x>1736</x><y>584</y><w>32</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>13;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>1440</x><y>464</y><w>144</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1096</x><y>464</y><w>168</w><h>24</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;190;10</additional_attributes></element><element><id>Relation</id><coordinates><x>784</x><y>464</y><w>88</w><h>24</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1584</x><y>280</y><w>176</w><h>144</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>200;160;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>968</x><y>280</y><w>152</w><h>144</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;160;170;10</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>315</x><y>537</y><w>54</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>163;10;160;70;10;70;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>537</y><w>60</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>13;10;10;70;180;70;180;100</additional_attributes></element><element><id>Relation</id><coordinates><x>651</x><y>501</y><w>9</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>13;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>456</y><w>54</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>Relation</id><coordinates><x>411</x><y>456</y><w>63</w><h>9</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;190;10</additional_attributes></element><element><id>Relation</id><coordinates><x>294</x><y>456</y><w>33</w><h>9</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>594</x><y>387</y><w>66</w><h>54</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>200;160;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>363</x><y>387</y><w>57</w><h>54</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;160;170;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>192</x><y>369</y><w>117</w><h>30</h></coordinates><panel_attributes>FileManager {readOnly}
+--
+_- savedInventory : File_
+_- fileReader : Scanner(savedInventory)_
+--
+_+ addDefaultItems() : ArrayList&lt;GenericItem&gt;_
+_+ saveInventory(unsavedInventory : ArrayList&lt;GenericItem&gt;) : void_</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>390</y><w>63</w><h>51</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>190;150;10;10</additional_attributes></element></diagram>

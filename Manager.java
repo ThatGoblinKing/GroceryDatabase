@@ -50,6 +50,7 @@ public final class Manager extends Prompter {
         System.out.println("What would you like to change that to?");
         editItemInput = Input.getString();
         inventory.get(selectChoice - 1).edit(editItemInput, editChoice);
+        FileManager.saveInventory(inventory);
     }
 
     private static void addItem() {
@@ -77,6 +78,7 @@ public final class Manager extends Prompter {
         }
         if (!itemSet)
             inventory.add(newItem);
+        FileManager.saveInventory(inventory);
     }
 
     private static void deleteItem() {
@@ -84,6 +86,6 @@ public final class Manager extends Prompter {
                 "Which item would you like to delete? (please enter the item's ID): ",
                 inventory.size());
         inventory.set(delChoice - 1, null);
-
+        FileManager.saveInventory(inventory);
     }
 }

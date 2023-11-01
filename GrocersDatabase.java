@@ -5,8 +5,6 @@ public class GrocersDatabase {
         final String PROGRAM_CLOSE = "\nThank you for using the Grocers Database. The program is now closing...";
         char userState = STARTING_MENU;
 
-        Prompter.addDefaultItems();
-
         while (userState != QUIT) {
             switch (userState) {
                 case MANAGER_MODE:

@@ -79,8 +79,12 @@ public class GenericItem {
         this.id = changeTo;
     }
 
-    public void display() {
-        System.out.printf(DISPLAY_FORMAT,
+    public String toString() {
+        return String.format(DISPLAY_FORMAT,
                 this.id, this.itemType, this.price, this.quantity);
+    }
+
+    public String save() {
+        return String.format("%s, %.02f, %d", this.itemType, this.price, this.quantity);
     }
 }
